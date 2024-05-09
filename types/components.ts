@@ -9,7 +9,7 @@ import {
   SelectHTMLAttributes,
 } from "react";
 
-export type PageMetaLayout = "blank" | "public" | "auth";
+export type PageMetaLayout = "blank" | "public" | "auth" | "app";
 
 export type PageMeta = {
   pageKey: string;

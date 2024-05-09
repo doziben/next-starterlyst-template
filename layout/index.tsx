@@ -1,5 +1,5 @@
 import tw from "twin.macro";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
@@ -8,6 +8,7 @@ import AuthLayout from "./auth";
 import toast from "react-hot-toast";
 import PublicLayout from "./public";
 import SEOConfig from "../components/SEO";
+import AppLayout from "./app";
 
 type layout = {
   [t in PageMetaLayout]: JSX.Element;
@@ -35,9 +36,10 @@ export default function Layout({ children, Component, PageProps }: any) {
   }, [meta?.allowAccess, isLoggedIn, router]);
 
   const layouts: layout = {
-    blank: <>{children}</>,
+    blank: <Fragment>{children}</Fragment>,
     public: <PublicLayout {...PageProps}>{children}</PublicLayout>,
     auth: <AuthLayout {...PageProps}>{children}</AuthLayout>,
+    app: <AppLayout {...PageProps}>{children}</AppLayout>,
   };
 
   let render = layouts[(meta?.layout as keyof typeof layouts) ?? "blank"];
